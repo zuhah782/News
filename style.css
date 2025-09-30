@@ -1,0 +1,222 @@
+/* ===== Reset & Layout ===== */
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    width: 100%;
+    overflow-x: hidden; /* kill horizontal scrollbar */
+}
+
+body {
+    margin: 0;
+    font-family: 'Inter', Arial, sans-serif; /* Using Inter for a modern look */
+    background: #f4f4f4;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Ensures footer sticks to bottom */
+}
+
+/* ===== Header ===== */
+header {
+    background: #fff;
+    padding: 16px 12px;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+}
+
+header h1 {
+    margin: 0;
+    padding: 12px 0 8px;
+    font-size: 2.2rem;
+    color: #222;
+}
+
+/* ===== Category Buttons ===== */
+#categories {
+    margin: 8px 0 6px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px; /* Space between buttons */
+}
+
+#categories button {
+    appearance: none; /* remove OS styles */
+    border: none;
+    color: #fff;
+    padding: 8px 14px;
+    border-radius: 999px; /* Pill shape */
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: transform .15s ease, filter .15s ease, background-color .15s ease;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+#categories button:hover {
+    transform: translateY(-2px); /* Slight lift on hover */
+    filter: brightness(1.1);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+#categories button:active {
+    transform: translateY(0);
+    filter: brightness(.9);
+}
+
+/* Per-category colors (no extra classes needed) */
+#categories button[data-category="general"]        { background: #6c757d; }
+#categories button[data-category="business"]       { background: #0d6efd; }
+#categories button[data-category="technology"]     { background: #17a2b8; }
+#categories button[data-category="sports"]         { background: #28a745; }
+#categories button[data-category="health"]         { background: #dc3545; }
+#categories button[data-category="entertainment"]  { background: #fd7e14; }
+#categories button[data-category="science"]        { background: #6610f2; }
+
+/* Active category button */
+#categories button.active {
+    background-color: #333; /* Darker background for active state */
+    transform: translateY(-1px);
+    box-shadow: inset 0 2px 5px rgba(0,0,0,0.2);
+}
+
+
+/* ===== Search Bar ===== */
+#search-box {
+    margin: 12px 0 4px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap; /* Allows wrapping on smaller screens */
+}
+
+#search-input {
+    padding: 10px 14px;
+    width: min(320px, 80vw); /* Responsive width */
+    border-radius: 999px;
+    border: 1px solid #cfcfcf;
+    background: #fff;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+#search-input:focus {
+    outline: none;
+    border-color: #0d6efd;
+    box-shadow: 0 0 0 3px rgba(13,110,253,0.25);
+}
+
+#search-btn {
+    appearance: none;
+    background: #ffc107;
+    color: #000;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: transform .15s ease, background .15s ease, box-shadow .15s ease;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+#search-btn:hover {
+    background: #e0a800;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+#search-btn:active {
+    transform: translateY(0);
+    filter: brightness(.95);
+    box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+}
+
+/* ===== News Grid ===== */
+main#news-container {
+    max-width: 1100px; /* centered content width */
+    margin: 18px auto 28px;
+    padding: 0 12px;
+    display: grid;
+    /* Responsive grid columns */
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 18px;
+    flex: 1; /* push footer to page bottom */
+}
+
+/* ===== Article Card ===== */
+.news-article {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.07);
+    overflow: hidden; /* Ensures image corners are rounded with parent */
+    display: flex;
+    flex-direction: column;
+    transition: transform .18s ease, box-shadow .18s ease;
+}
+.news-article:hover {
+    transform: translateY(-4px); /* More pronounced lift */
+    box-shadow: 0 8px 18px rgba(0,0,0,0.18); /* Stronger shadow */
+}
+
+/* Image: always contained + fixed height so it never overflows */
+.news-article img {
+    display: block;
+    width: 100%;
+    height: 220px; /* consistent tile height */
+    object-fit: cover; /* crop to fit tile */
+    border-radius: 12px 12px 0 0; /* Match parent's top border radius */
+}
+
+/* Text content */
+.news-article h2 {
+    margin: 12px 12px 6px;
+    font-size: 1.15rem; /* Slightly larger heading */
+    line-height: 1.3;
+    font-weight: 600; /* Bolder heading */
+}
+.news-article h2 a {
+    color: #0d6efd;
+    text-decoration: none;
+}
+.news-article h2 a:hover {
+    text-decoration: underline;
+    color: #0a58ca;
+}
+
+.news-article p {
+    margin: 0 12px 10px;
+    font-size: 0.94rem;
+    color: #555;
+    flex-grow: 1; /* Allows descriptions to push details to bottom */
+}
+
+.article-details {
+    margin: auto 12px 14px; /* Push to bottom of card */
+    font-size: 0.82rem;
+    color: #888;
+    border-top: 1px solid #eee;
+    padding-top: 8px;
+}
+
+/* Loading Spinner */
+.spinner {
+    border: 4px solid rgba(0, 0, 0, 0.1);
+    border-top: 4px solid #0d6efd; /* Blue color for spinner */
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+    margin: 20px auto;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Error Message */
+#error-message {
+    padding: 20px;
+    background-color: #ffe0e0;
+    border: 1px solid #ffb3b3;
+    border-radius: 8px;
+    color: #cc0000;
+    margin-top: 20px;
+}
